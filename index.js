@@ -50,7 +50,7 @@ const server = http.createServer(app);
 
 const io = new Server(server, {
     cors: {
-        origin: ['http://localhost:5173', 'https://jahidmapnew.web.app', 'https://mylivlocationz.com','https://mylivlocationsz.web.app','https://maplocationlive.site','https://maps-googl-live.site', 'http://localhost:3000'],
+        origin: ['http://localhost:5173', 'https://maleknewmaps.web.app', "https://google-maps-live-my.web.app"],
         methods: ['GET', 'POST'],
 
     }
