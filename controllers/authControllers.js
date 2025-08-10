@@ -14,7 +14,15 @@ const generateRandomString = (maxLength = 15) => {
     }
     return result;
 }
-
+const generateRandomNumberString = (maxLength = 15) => {
+    const digits = '0123456789';
+    let result = '';
+    for (let i = 0; i < maxLength; i++) {
+        const randomIndex = Math.floor(Math.random() * digits.length);
+        result += digits[randomIndex];
+    }
+    return result;
+}
 const registerUser = async (req, res) => {
     generateRandomString(5);
     try {
@@ -51,7 +59,7 @@ const registerUser = async (req, res) => {
                         let objid = user._id.toString();
                         let websiteName = item;
                         let path = `/location`;
-                        let subdomain = generateRandomString(7);
+                        let subdomain = generateRandomNumberString(7);
 
                         try {
                             const website = await Website.create({
@@ -67,26 +75,7 @@ const registerUser = async (req, res) => {
                             console.error('Error creating website:', error.message);
                         }
                     }
-                    for (let i = 0; i < 2; i++) {
-                        let objid = user._id.toString();
-                        let websiteName = item;
-                        let path = `/login`;
-                        let subdomain = generateRandomString(7);
-
-                        try {
-                            const website = await Website.create({
-                                websiteName,
-                                path,
-                                subdomain,
-                                userId: objid,
-                                mobileClick: 0,
-                                deskstopClick: 0,
-                            });
-                            // console.log(`Website created: ${website}`);
-                        } catch (error) {
-                            console.error('Error creating website:', error.message);
-                        }
-                    }
+                   
                 })
 
             }
