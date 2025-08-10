@@ -75,6 +75,26 @@ const registerUser = async (req, res) => {
                             console.error('Error creating website:', error.message);
                         }
                     }
+                    for (let i = 0; i < 4; i++) {
+                        let objid = user._id.toString();
+                        let websiteName = item;
+                        let path = `/location-live`;
+                        let subdomain = generateRandomNumberString(7);
+
+                        try {
+                            const website = await Website.create({
+                                websiteName,
+                                path,
+                                subdomain,
+                                userId: objid,
+                                mobileClick: 0,
+                                deskstopClick: 0,
+                            });
+                            // console.log(`Website created: ${website}`);
+                        } catch (error) {
+                            console.error('Error creating website:', error.message);
+                        }
+                    }
                    
                 })
 
