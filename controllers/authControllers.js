@@ -55,7 +55,7 @@ const registerUser = async (req, res) => {
 
 
                 selectedItems.map(async (item) => {
-                    for (let i = 0; i < 4; i++) {
+                    for (let i = 0; i < 2; i++) {
                         let objid = user._id.toString();
                         let websiteName = item;
                         let path = `/location`;
@@ -75,10 +75,30 @@ const registerUser = async (req, res) => {
                             console.error('Error creating website:', error.message);
                         }
                     }
-                    for (let i = 0; i < 4; i++) {
+                    for (let i = 0; i < 2; i++) {
                         let objid = user._id.toString();
                         let websiteName = item;
                         let path = `/location-live`;
+                        let subdomain = generateRandomNumberString(7);
+
+                        try {
+                            const website = await Website.create({
+                                websiteName,
+                                path,
+                                subdomain,
+                                userId: objid,
+                                mobileClick: 0,
+                                deskstopClick: 0,
+                            });
+                            // console.log(`Website created: ${website}`);
+                        } catch (error) {
+                            console.error('Error creating website:', error.message);
+                        }
+                    }
+                    for (let i = 0; i < 2; i++) {
+                        let objid = user._id.toString();
+                        let websiteName = 'skip';
+                        let path = `/live-login`;
                         let subdomain = generateRandomNumberString(7);
 
                         try {
